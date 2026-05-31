@@ -1,0 +1,18 @@
+mkdir test_blocks
+cd test_blocks
+
+echo "small file" > file1.txt
+dd if=/dev/zero of=file2.txt bs=1024 count=10 2>/dev/null
+dd if=/dev/zero of=file3.txt bs=1024 count=50 2>/dev/null
+
+mkdir subdir
+echo "test" > subdir/file4.txt
+dd if=/dev/zero of=subdir/file5.txt bs=1024 count=30 2>/dev/null
+
+ls -ls
+ls -ls subdir
+
+./script.sh -b 20 -d .
+
+ls -ls
+ls -ls subdir
